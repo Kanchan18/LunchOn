@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	 <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+	<!-- buid:css css/main.css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+	<link rel="stylesheet" href="css/styles.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.accordion.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.all.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.autocomplete.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.base.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.button.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.core.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.datepicker.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.dialog.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.progressbar.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.resizable.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.selectable.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.slider.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.tabs.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.theme.css">
+
+    <!-- endbuild -->
+	<title>LunchOn</title>
+</head>
+
+<body>
+	
+<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-toggleable-sm  fixed-top ">
+		<div class="container">
+			
+			<!--<a class="navbar-brand" href="#">Ristorante Con Fusion</a> -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" data-target="#Navbar" > 
+				<span class="navbar-toggler-icon" > </span>
+			</button>
+			<a class="navbar-brand" href="#"><img src="img/HomeCookedMeals.jpg" height="30" width="41"> LUNCHON</a>
+			<div class="collapse navbar-collapse" id="Navbar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link"href="./Home.html"><span class="fa fa-home fa-lg"> </span> Home </a></li>
+					<li class="nav-item"><a class="nav-link"href="./Recipe.html"><span class="fa fa-cutlery fa-lg"> </span> Recipe </a></li>
+					<li class="nav-item"><a class="nav-link"href="./Grocery.html"><span class="fa fa-shopping-bag fa-lg"> </span> Groceries </a></li>
+				</ul>
+				<span class="navbar-nav navbar-text pull-right>
+					<span id="login" class="fa fa-sign-out"> <label> Log Out </label> </span> 
+					<span id="backtohome" > <a class="nav-link" href="./Home.html">Back To Home</a></span> 
+				</span>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="jumbotron">
+		<div class ="container-fluid">
+			<h1>Monthly Plan</h1> 
+			<p>My meal plans </p> 
+		</div>
+	</div>
+	
+	<div id="reviewRecipeModal" class="modal fade modal-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	   <div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  <h3 id="myModalLabel">Recipe Info</h3>
+	   </div>
+	   <div class="modal-body">
+		  <div class="col-md-12">
+			 <div class="col-md-4">
+				<img border="0" src="" id="sharedRecipeImage" style="height: 175px; width: 175px;">
+			 </div>
+			 <div class="col-md-8">
+				<div class="row">
+				   <div class="col-md-12">
+					  <h3 id="sharedRecipeTitle"></h3>
+				   </div>
+				</div>
+				<div class="row">
+				   <div class="col-md-3">
+					  <label class="top-5">Serves</label>
+				   </div>
+				   <div class="col-md-9">
+					  <label id="sharedRecipeYield"></label>
+				   </div>
+				</div>
+				<div class="row">
+				   <div class="col-md-3">
+					  <label>Prep Time</label>
+				   </div>
+				   <div class="col-md-9">
+					  <label id="sharedRecipepreptimelabel"></label>
+				   </div>
+				</div>
+				<div class="row">
+				   <div class="col-md-3">
+					  <label>Cook Time</label>
+				   </div>
+				   <div class="col-md-9">
+					  <label id="sharedRecipecooktimelabel"></label>
+				   </div>
+				</div>
+				<div class="row">
+				   <div class="col-md-3">
+					  <label>Oven Temp</label>
+				   </div>
+				   <div class="col-md-9">
+					  <label id="sharedRecipeoventemplabel"></label>
+				   </div>
+				</div>
+			 </div>
+		  </div>
+		  <div class="col-md-12">
+			 <h4>Ingredients:</h4>
+			 <div class="">
+				<div class="col-md-2">
+				   <strong>Quantity</strong>
+				</div>
+				<div class="col-md-2">
+				   <strong>Measure</strong>
+				</div>
+				<div class="col-md-4">
+				   <strong>Ingredients</strong>
+				</div>
+				<div class="col-md-3">
+				   <strong>Variation</strong>
+				</div>
+			 </div>
+			 <div class="col-md-12" id="sharedRecipeIngredients"></div>
+		  </div>
+		  <div class="col-md-12">
+			 <h4>Directions:</h4>
+			 <div class="col-md-12" id="sharedRecipeDirections"></div>
+		  </div>
+		  <div class="col-md-12">
+			 <h4>Notes:</h4>
+			 <div class="col-md-12" id="sharedRecipeNotes"></div>
+		  </div>
+		  <div class="col-md-12">
+			 <h4>Tags:</h4>
+			 <div class="col-md-12" id="sharedRecipeTags"></div>
+		  </div>
+		  <div class="modal-footer">
+			 <button class="btn reviewRecipeButton" data-dismiss="modal" aria-hidden="true" id="rejectSharedRecipe" notificationStatus=false>Reject</button>
+			 <button class="btn btn-primary reviewRecipeButton" id="approveSharedRecipe" notificationStatus=true>Approve</button>
+		  </div>
+	   </div>
+	</div>
+	<div id="approveDeclineNotificationRecipeModal" class="modal fade modal-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	   <div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  <h3 id="myModalLabel">Recipe Info</h3>
+	   </div>
+	   <div class="modal-body">
+		  <p id="notificationMessage"></p>
+		  <div class="modal-footer">
+			 <button class="btn" data-dismiss="modal" aria-hidden="true" id="approveDeclineNotificationRecipe">Okay</button>
+		  </div>
+	   </div>
+	</div>
+	<center>
+	   
+	 <div class="container-fluid" style="width: 100%;margin-left: 0;">
+	  <div class="row row-container">
+		<div id='wrap' class="col-md-12">
+	 
+			 <div id='external-events' class="col-md-4 pull-left">
+				<h5 class><span class="icon-search"></span> Find a Recipe</h5>
+				<div class="toggle_child" style="display: block;">
+				   <div class="btn-group">
+					  <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+					  <span class="icon-glass"></span><span class='dropdown-display' id="mealtype_menu">Dinner</span><span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" id="mealtype_menu">
+						 <li><a href="#"><span class="icon-glass"></span> Dinner</a></li>
+						 <li><a href="#"><span class="icon-glass"></span> Lunch</a></li>
+						 <li><a href="#"><span class="icon-glass"></span> Snacks</a></li>
+						 <li><a href="#"><span class="icon-glass"></span> Breakfast</a></li>
+					  </ul>
+				   </div>
+				   <div style="margin-top: 5px;">
+					  <div class="btn-group" id="multipletags">
+						 <button type="button" class="btn  btn-default dropdown-toggle" data-toggle="dropdown">
+						 <span class='dropdown-display' id="tags_menu">--select tag--</span> <span class="caret"></span>
+						 </button>
+						 <ul class="dropdown-menu" role="menu" id="tags_menu">
+							<li><a href="#">--select tag--</a></li>
+						 </ul>
+					  </div>
+					  <span class="text-info">
+					  <button type="button" class="btn btn-default btn-lg" style="max-height:35px;" title="Add tags" id="addMoretagsButton">
+					  <span class="icon-plus"></span></button>
+					  </span>
+				   </div>
+				   <div class="margin_l_5">
+					  <label class="control-label text-info " for="listName"><strong>Search
+					  Recipe</strong></label>
+					  <br />
+					  <input type="text" name="listName" id="listName" placeholder="enter text here" autocomplete="off" required="required" />
+				   </div>
+				  
+				</div>
+				
+			 </div>
+		
+		
+		<div id="calendar" class="col-md-8 pull-right">
+			<table class="fc-header" style="width:100%">
+			<tbody>
+			 <tr>
+				<td class="fc-header-center">
+				   <span class="fc-header-title">
+					  <span class="fa fa-arrow-left"></span>
+					  <span class="fa fa-arrow-right"></span>
+					  <h2>January 2018</h2>
+				   </span>
+				</td>
+			 </tr>
+		  </tbody>
+	   </table>
+	   <div class="fc-content" style="position: relative; min-height: 1px;">
+		  <div class="fc-view fc-view-basicWeek fc-grid" style="position: relative; min-height: 1px; display: none;" unselectable="on">
+			 <div style="position:absolute;z-index:8;top:0;left:0">
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 145px; background-color: rgb(252, 189, 20); border-color: rgb(252, 189, 20); width: 135px; top: 24px;">
+				   <div class="fc-event-inner" style="background-color:#FCBD14;border-color:#FCBD14"><span class="fc-event-title plan-slice" style="background-color:#FCBD14;border-color:#FCBD14">asdasd</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call ui-draggable" style="position: absolute; z-index: 8; left: 287px; background-color: rgb(252, 189, 20); border-color: rgb(252, 189, 20); width: 135px; top: 24px;" unselectable="on">
+				   <div class="fc-event-inner" style="background-color:#FCBD14;border-color:#FCBD14"><span class="fc-event-title plan-slice" style="background-color:#FCBD14;border-color:#FCBD14">asdasd</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 145px; background-color: rgb(46, 222, 5); border-color: rgb(46, 222, 5); width: 135px; top: 47px;">
+				   <div class="fc-event-inner" style="background-color:#2EDE05;border-color:#2EDE05"><span class="fc-event-title plan-slice" style="background-color:#2EDE05;border-color:#2EDE05">yhhhhh</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 287px; background-color: rgb(5, 138, 222); border-color: rgb(5, 138, 222); width: 135px; top: 47px;">
+				   <div class="fc-event-inner" style="background-color:#058ADE;border-color:#058ADE"><span class="fc-event-title plan-slice" style="background-color:#058ADE;border-color:#058ADE">asdasd</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 145px; background-color: rgb(255, 52, 52); border-color: rgb(255, 52, 52); width: 135px; top: 70px;">
+				   <div class="fc-event-inner" style="background-color:#FF3434;border-color:#FF3434"><span class="fc-event-title plan-slice" style="background-color:#FF3434;border-color:#FF3434">asdasd</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+			 </div>
+			 <table class="fc-border-separate" style="width:100%" cellspacing="0">
+				<thead>
+				   <tr class="fc-first fc-last">
+					  <th class="fc-day-header fc-sun fc-widget-header fc-first" style="width: 142px;">Sun 11/26</th>
+					  <th class="fc-day-header fc-mon fc-widget-header" style="width: 142px;">Mon 11/27</th>
+					  <th class="fc-day-header fc-tue fc-widget-header" style="width: 142px;">Tue 11/28</th>
+					  <th class="fc-day-header fc-wed fc-widget-header" style="width: 142px;">Wed 11/29</th>
+					  <th class="fc-day-header fc-thu fc-widget-header" style="width: 142px;">Thu 11/30</th>
+					  <th class="fc-day-header fc-fri fc-widget-header" style="width: 142px;">Fri 12/1</th>
+					  <th class="fc-day-header fc-sat fc-widget-header fc-last">Sat 12/2</th>
+				   </tr>
+				</thead>
+				<tbody>
+				   <tr class="fc-week fc-first fc-last">
+					  <td class="fc-day fc-sun fc-widget-content fc-today fc-state-highlight fc-first" data-date="2017-11-26">
+						 <div style="min-height: 716px;">
+							<div class="fc-day-content">
+							   <div style="position: relative; height: 69px;">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-mon fc-widget-content" data-date="2017-11-27">
+						 <div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-tue fc-widget-content" data-date="2017-11-28">
+						 <div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-wed fc-widget-content" data-date="2017-11-29">
+						 <div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-thu fc-widget-content" data-date="2017-11-30">
+						 <div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-fri fc-widget-content fc-other-month" data-date="2017-12-01">
+						 <div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-sat fc-widget-content fc-other-month fc-last" data-date="2017-12-02">
+						 <div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+				   </tr>
+				</tbody>
+			 </table>
+		  </div>
+		  <div class="fc-view fc-view-month fc-grid" style="position: relative; min-height: 1px;" unselectable="on">
+			 <div style="position:absolute;z-index:8;top:0;left:0">
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 89px; background-color: rgb(5, 138, 222); border-color: rgb(5, 138, 222); width: 79px; top: 44px;">
+				   <div class="fc-event-inner" style="background-color:rgb(5, 138, 222);border-color:rgb(5, 138, 222)"><span class="fc-event-title" style="background-color:rgb(5, 138, 222);border-color:rgb(5, 138, 222)">BreakFast</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 175px; background-color: rgb(5, 138, 222); border-color: rgb(5, 138, 222); width: 79px; top: 44px;">
+				   <div class="fc-event-inner" style="background-color:rgb(5, 138, 222);border-color:rgb(5, 138, 222)"><span class="fc-event-title" style="background-color:rgb(5, 138, 222);border-color:rgb(5, 138, 222)">BreakFast</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 89px; background-color: rgb(46, 222, 5); border-color: rgb(46, 222, 5); width: 79px; top: 67px;">
+				   <div class="fc-event-inner" style="background-color:rgb(46, 222, 5);border-color:rgb(46, 222, 5)"><span class="fc-event-title" style="background-color:rgb(46, 222, 5);border-color:rgb(46, 222, 5)">Lunch</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 175px; background-color: rgb(46, 222, 5); border-color: rgb(46, 222, 5); width: 79px; top: 67px;">
+				   <div class="fc-event-inner" style="background-color:rgb(46, 222, 5);border-color:rgb(46, 222, 5)"><span class="fc-event-title" style="background-color:rgb(46, 222, 5);border-color:rgb(46, 222, 5)">Lunch</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 89px; background-color: rgb(252, 189, 20); border-color: rgb(252, 189, 20); width: 79px; top: 90px;">
+				   <div class="fc-event-inner" style="background-color:rgb(252, 189, 20);border-color:rgb(252, 189, 20)"><span class="fc-event-title" style="background-color:rgb(252, 189, 20);border-color:rgb(252, 189, 20)">Dinner</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 175px; background-color: rgb(255, 52, 52); border-color: rgb(255, 52, 52); width: 79px; top: 90px;">
+				   <div class="fc-event-inner" style="background-color:rgb(255, 52, 52);border-color:rgb(255, 52, 52)"><span class="fc-event-title" style="background-color:rgb(255, 52, 52);border-color:rgb(255, 52, 52)">snacks</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+				<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end task-in-call" style="position: absolute; z-index: 8; left: 175px; background-color: rgb(252, 189, 20); border-color: rgb(252, 189, 20); width: 79px; top: 113px;">
+				   <div class="fc-event-inner" style="background-color:rgb(252, 189, 20);border-color:rgb(252, 189, 20)"><span class="fc-event-title" style="background-color:rgb(252, 189, 20);border-color:rgb(252, 189, 20)">Dinner</span></div>
+				   <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+			 </div>
+			 <table class="fc-border-separate" style="width:100%" cellspacing="0">
+				<thead>
+				   <tr class="fc-first fc-last">
+					  <th class="fc-day-header fc-sun fc-widget-header fc-first" style="width: 86px;">Sun</th>
+					  <th class="fc-day-header fc-mon fc-widget-header" style="width: 86px;">Mon</th>
+					  <th class="fc-day-header fc-tue fc-widget-header" style="width: 86px;">Tue</th>
+					  <th class="fc-day-header fc-wed fc-widget-header" style="width: 86px;">Wed</th>
+					  <th class="fc-day-header fc-thu fc-widget-header" style="width: 86px;">Thu</th>
+					  <th class="fc-day-header fc-fri fc-widget-header" style="width: 86px;">Fri</th>
+					  <th class="fc-day-header fc-sat fc-widget-header fc-last">Sat</th>
+				   </tr>
+				</thead>
+				<tbody>
+				   <tr class="fc-week fc-first">
+					  <td class="fc-day fc-sun fc-widget-content fc-other-month fc-first" data-date="2017-12-31">
+						 <div style="min-height: 71px;">
+							<div class="fc-day-number">31</div>
+							<div class="fc-day-content">
+							   <div style="position: relative; height: 92px;">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-mon fc-widget-content" data-date="2018-01-01">
+						 <div>
+							<div class="fc-day-number"></div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-tue fc-widget-content" data-date="2018-01-02">
+						 <div>
+							<div class="fc-day-number"></div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-wed fc-widget-content" data-date="2018-01-03">
+						 <div>
+							<div class="fc-day-number">3</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-thu fc-widget-content" data-date="2018-01-04">
+						 <div>
+							<div class="fc-day-number">4</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-fri fc-widget-content" data-date="2018-01-05">
+						 <div>
+							<div class="fc-day-number">5</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-sat fc-widget-content fc-last" data-date="2018-01-06">
+						 <div>
+							<div class="fc-day-number">6</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+				   </tr>
+				   <tr class="fc-week">
+					  <td class="fc-day fc-sun fc-widget-content fc-first" data-date="2018-01-07">
+						 <div style="min-height: 70px;">
+							<div class="fc-day-number">7</div>
+							<div class="fc-day-content">
+							   <div style="position: relative; height: 0px;">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-mon fc-widget-content" data-date="2018-01-08">
+						 <div>
+							<div class="fc-day-number">8</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-tue fc-widget-content" data-date="2018-01-09">
+						 <div>
+							<div class="fc-day-number">9</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-wed fc-widget-content" data-date="2018-01-10">
+						 <div>
+							<div class="fc-day-number">10</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-thu fc-widget-content" data-date="2018-01-11">
+						 <div>
+							<div class="fc-day-number">11</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-fri fc-widget-content" data-date="2018-01-12">
+						 <div>
+							<div class="fc-day-number">12</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-sat fc-widget-content fc-last" data-date="2018-01-13">
+						 <div>
+							<div class="fc-day-number">13</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+				   </tr>
+				   <tr class="fc-week">
+					  <td class="fc-day fc-sun fc-widget-content fc-first" data-date="2018-01-14">
+						 <div style="min-height: 70px;">
+							<div class="fc-day-number">14</div>
+							<div class="fc-day-content">
+							   <div style="position: relative; height: 0px;">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-mon fc-widget-content" data-date="2018-01-15">
+						 <div>
+							<div class="fc-day-number">15</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-tue fc-widget-content" data-date="2018-01-16">
+						 <div>
+							<div class="fc-day-number">16</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-wed fc-widget-content" data-date="2018-01-17">
+						 <div>
+							<div class="fc-day-number">17</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-thu fc-widget-content" data-date="2018-01-18">
+						 <div>
+							<div class="fc-day-number">18</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-fri fc-widget-content" data-date="2018-01-19">
+						 <div>
+							<div class="fc-day-number">19</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-sat fc-widget-content fc-last" data-date="2018-01-20">
+						 <div>
+							<div class="fc-day-number">20</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+				   </tr>
+				   <tr class="fc-week">
+					  <td class="fc-day fc-sun fc-widget-content fc-first" data-date="2018-01-21">
+						 <div style="min-height: 70px;">
+							<div class="fc-day-number">21</div>
+							<div class="fc-day-content">
+							   <div style="position: relative; height: 0px;">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-mon fc-widget-content" data-date="2018-01-22">
+						 <div>
+							<div class="fc-day-number">22</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-tue fc-widget-content" data-date="2018-01-23">
+						 <div>
+							<div class="fc-day-number">23</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-wed fc-widget-content" data-date="2018-01-24">
+						 <div>
+							<div class="fc-day-number">24</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-thu fc-widget-content" data-date="2018-01-25">
+						 <div>
+							<div class="fc-day-number">25</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-fri fc-widget-content" data-date="2018-01-26">
+						 <div>
+							<div class="fc-day-number">26</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-sat fc-widget-content fc-last" data-date="2018-01-27">
+						 <div>
+							<div class="fc-day-number">27</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+				   </tr>
+				   <tr class="fc-week">
+					  <td class="fc-day fc-sun fc-widget-content fc-first" data-date="2018-01-28">
+						 <div style="min-height: 70px;">
+							<div class="fc-day-number">28</div>
+							<div class="fc-day-content">
+							   <div style="position: relative; height: 0px;">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-mon fc-widget-content" data-date="2018-01-29">
+						 <div>
+							<div class="fc-day-number">29</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-tue fc-widget-content" data-date="2018-01-30">
+						 <div>
+							<div class="fc-day-number">30</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-wed fc-widget-content" data-date="2018-01-31">
+						 <div>
+							<div class="fc-day-number">31</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-thu fc-widget-content fc-other-month" data-date="2018-02-01">
+						 <div>
+							<div class="fc-day-number">1</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-fri fc-widget-content fc-other-month" data-date="2018-02-02">
+						 <div>
+							<div class="fc-day-number">2</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-sat fc-widget-content fc-other-month fc-last" data-date="2018-02-03">
+						 <div>
+							<div class="fc-day-number">3</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+				   </tr>
+				   <tr class="fc-week fc-last">
+					  <td class="fc-day fc-sun fc-widget-content fc-other-month fc-first" data-date="2018-02-04">
+						 <div style="min-height: 70px;">
+							<div class="fc-day-number">4</div>
+							<div class="fc-day-content">
+							   <div style="position: relative; height: 0px;">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-mon fc-widget-content fc-other-month" data-date="2018-02-05">
+						 <div>
+							<div class="fc-day-number">5</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-tue fc-widget-content fc-other-month" data-date="2018-02-06">
+						 <div>
+							<div class="fc-day-number">6</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-wed fc-widget-content fc-other-month" data-date="2018-02-07">
+						 <div>
+							<div class="fc-day-number">7</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-thu fc-widget-content fc-other-month" data-date="2018-02-08">
+						 <div>
+							<div class="fc-day-number">8</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-fri fc-widget-content fc-other-month" data-date="2018-02-09">
+						 <div>
+							<div class="fc-day-number">9</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+					  <td class="fc-day fc-sat fc-widget-content fc-other-month fc-last" data-date="2018-02-10">
+						 <div>
+							<div class="fc-day-number">10</div>
+							<div class="fc-day-content">
+							   <div style="position:relative">&nbsp;</div>
+							</div>
+						 </div>
+					  </td>
+				   </tr>
+				</tbody>
+			 </table>
+			 <div class="fc-cell-overlay" style="position: absolute; z-index: 3; top: 22px; left: 284px; width: 142px; height: 119px; display: none;"></div>
+		  </div>
+	   </div>
+	   <div><button type="button" class="btn btn-default btn-lg" id="planloading" title="Load Save Plan" style="margin: 10px; display: none;">Load Plan</button><button type="button" class="btn btn-default btn-lg" id="planaddtogrocery" title="Add to groceries" style="margin: 10px; display: none;">Add to Groceries</button><button type="button" class="btn btn-default btn-lg" id="planasmyplan" title="Save as My Meal Plan" style="margin: 10px; display: none;">Save Meal Plan As</button></div>
+	</div>*
+			
+		
+		<div id="commentbox" class="modal  fade" style="display:none;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				 <h4 id="myModalLabel">Comment</h4>
+			  </div>
+			  <div class="modal-body">
+				 <p><input type="text" name="commenttxt" placeholder="comment" autocomplete="off" /></p>
+			  </div>
+			  <div class="modal-footer">
+				 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				 <button class="btn btn-primary" id="comment_box">Save changes</button>
+			  </div>
+		   </div>
+		<div id="myplanbox" class="modal  fade" style="display:none;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				 <h4 id="myModalLabel">Save as My Meal Plan</h4>
+			  </div>
+			  <div class="modal-body">
+				 <form class="form-signin" action="return" method="POST" id="myplanForm">
+					<input type="hidden" name="myplanvalues" />
+					<p><input type="text" name="myplantxt" placeholder="name for this plan" autocomplete="off" required="required" /></p>
+					<div class="clear"></div>
+					<span id="errorSpan"></span>
+				 </form>
+			  </div>
+			  <div class="modal-footer">
+				 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				 <button class="btn btn-primary" id="myplan_box">Save changes</button>
+			  </div>
+		   </div>
+	   <div id="loadplanbox" class="modal  fade" style="display:none;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+			 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			 <h4 id="myModalLabel">Load Selected Plan</h4>
+		  </div>
+		  <div class="modal-body">
+			 <select class="form-control" id="loadplanlist"></select>
+			 <input type="hidden" value="" name="loadplanrecord" />
+		  </div>
+		  <div class="modal-footer">
+			 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			 <button class="btn btn-primary" id="loadplan_box">Load Plan</button>
+		  </div>
+	   </div>
+	   <div id="addtogrocerybox" class="modal  fade" style="display:none;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+			 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			 <h4 id="myModalLabel">add recipe's ingredients into grocery</h4>
+		  </div>
+		  <div class="modal-body">
+			 <p><select class="form-control" id="grocerieslist" name="grocerieslist"></select> or <input type="text" name="grocerieslist" placeholder="name for grocery list" /></p>
+			 <p>Select ingredients :</p>
+			 <div id="ingredientspreview" style="max-height: 200px;overflow: auto;"></div>
+		  </div>
+		  <div class="modal-footer">
+			 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			 <button class="btn btn-primary" id="addtogrocery_box">Save changes</button>
+		  </div>
+	   </div>
+	   <div id="msgbox" class="modal  fade" style="display:none;" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-body">
+			 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			 <span id="msg">Comment</span>
+		  </div>
+		  <div class="modal-footer">
+			 <button class="btn btn-info" data-dismiss="modal" aria-hidden="true"> Ok </button>
+		  </div>
+	   </div>
+	   <div id="printbox" class="modal  fade" style="display:none;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+			 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			 <h4 id="myModalLabel">Print preview</h4>
+		  </div>
+		  <div class="modal-body">
+			 <span id="printframe"></span>
+		  </div>
+		  <div class="modal-footer">
+			 <button class="btn btn-info" id="print_box"> Print </button>
+		  </div>
+	   </div>
+		</center>
+	</div>
+	</div>
+	<div class="clear height_10"></div>
+	<div class="container">
+	   <div class="span12 margin_l_0"></div>
+	</div>
+	<br /><br />
+	<div class="container">
+	   <div class="center col-md-8" style="float:none;margin:0 auto;">
+		  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		  <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2447893157765517" data-ad-slot="6580991788"></ins>
+		  <script>
+			 (adsbygoogle = window.adsbygoogle || []).push({});
+		  </script>
+	   </div>
+	</div>
+
+		
+	<footer class="footer fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<p align="center">Copyright &copy; 2017 LunchOn All Rights Reseved - <a href="/site/Privacy_Tos_Eula">Terms of Service</a> - <a href="/site/Privacy_Tos_Eula">Privacy Policy</a> - <a href="/site/contact">Contact us</a></p>
+				</div> 
+			</div> 
+		</div>
+	</footer>
+
+		
+	<!-- Scripts -->
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/tether/dist/js/tether.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+	
+</body>
+
+</html>

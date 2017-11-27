@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	 <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+	<!-- buid:css css/main.css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+	<link rel="stylesheet" href="css/styles.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.accordion.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.all.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.autocomplete.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.base.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.button.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.core.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.datepicker.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.dialog.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.progressbar.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.resizable.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.selectable.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.slider.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.tabs.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.theme.css">
+
+    <!-- endbuild -->
+	<title>LunchOn</title>
+</head>
+
+<body>
+	
+<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-toggleable-sm  fixed-top ">
+		<div class="container">
+			
+			<!--<a class="navbar-brand" href="#">Ristorante Con Fusion</a> -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" data-target="#Navbar" > 
+				<span class="navbar-toggler-icon" > </span>
+			</button>
+			<a class="navbar-brand" href="#"><img src="img/HomeCookedMeals.jpg" height="30" width="41"> LUNCHON</a>
+			<div class="collapse navbar-collapse" id="Navbar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link"href="./index.html"><span class="fa fa-home fa-lg"> </span> Home </a></li>
+					<li class="nav-item"><a class="nav-link"href="./Grocery.html"><span class="fa fa-shopping-bag fa-lg"> </span> Groceries </a></li>
+					<li class="nav-item"><a class="nav-link"href="./MonthlyPlan.html"><span class="fa fa-calendar fa-lg"> </span> Monthly Plan </a></li>
+				</ul>
+				<span class="navbar-nav navbar-text pull-right>
+					<span id="login" class="fa fa-sign-out"> <label> Log Out </label> </span> 
+					<span id="backtohome" > <a class="nav-link" href="./Home.html">Back To Home</a></span> 
+				</span>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="jumbotron">
+		<div class ="container-fluid">
+		<h1>Recipe</h1> 
+		<p>Add your favorite receipes </p> 
+		
+		<div class="col-md-12 searchRecipeDiv" >
+			<label><strong>Search Recipes:&nbsp;</strong>Search by tag, title, item</label>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-6">
+				<input type="text" class="fa fa-search" name="listName" style="width: 50%;" id="listName" placeholder="enter text here" autocomplete="off" required="required">
+				<select id="searchChoiceSelect" style="width:65px;">
+					<option value="tag">Tag</option>
+					<option value="title">Title</option>
+					<option value="item">Item</option>
+				</select>
+				<button id="filterRecipeBtn" class="btn" type="button" style="margin-bottom: 10px;">go</button>
+			</div>
+		</div>
+		</div>
+	</div>
+		
+	<div class="container-fluid">
+		<div class= "row row-content">
+			<div class="col col-md-12">
+				<div class="col-md-12">
+					<button class="btn btn-default" data-toggle="modal" data-target="#myaddownrecipe">Add recipe</button>
+					<button class="btn btn-default" data-toggle="modal" data-target="#importrecipe">Import Recipe</button>
+				</div>
+			</div>
+		
+		<div class="col-md-8" id="printablediv" style="padding-left: 40px;">
+			<form id="recipeForm">
+				<div class="row">
+					<div class="col-md-12">
+						<div id="recipe-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+						    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+								<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="ingredients-tab" aria-labelledby="ui-id-1" aria-selected="true"><a href="#ingredients-tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Ingredients</a></li>
+								<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="directions-tab" aria-labelledby="ui-id-2" aria-selected="false"><a href="#directions-tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Directions</a></li>
+								<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="inventory-tab" aria-labelledby="ui-id-3" aria-selected="false"><a href="#inventory-tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Inventory</a></li>
+								<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="notes-tab" aria-labelledby="ui-id-4" aria-selected="false"><a href="#notes-tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">Notes</a></li>
+								<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tags-tab" aria-labelledby="ui-id-5" aria-selected="false"><a href="#tags-tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-5">Tags</a></li>
+								<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="nutrition-tab" aria-labelledby="ui-id-6" aria-selected="false"><a href="#nutrition-tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-6">Nutrition</a></li>
+								<li id="reviews-tab-select" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="reviews-tab" aria-labelledby="ui-id-7" aria-selected="false"><a href="#reviews-tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-7">Reviews</a></li>
+							 </ul>
+						<div id="ingredients-tab" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+							<button type="button" class="btn btn-default" id="multipleIngredients">Add Multiple Ingredients</button>
+								<span class="span4 text-info">
+									<button type="button" id="addMoreIngredientsButton" class="btn btn-default" title="Add ingredient">Add Ingredient</button>
+										</span>
+										
+									 </div>
+									 <div id="directions-tab" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+										<textarea rows="5" cols="15" class="span12" id="directions" name="directions"></textarea>
+									 </div>
+									 <div id="inventory-tab" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">Inventory tab plz here</div>
+									 <div id="notes-tab" aria-labelledby="ui-id-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+										<textarea rows="3" cols="15" class="span12" id="notes" name="notes"></textarea>
+									 </div>
+									 <div id="tags-tab" aria-labelledby="ui-id-5" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+										<span class="">
+										   <div class="row">
+											  <div class="col-md-1">
+												 <label>Tags:</label>
+											  </div>
+											  <div class="col-md-4">
+												 <select id="tags_input_select" style="width: 160px;">
+													<option value="">Select to add tag</option>
+													<option value=""></option>
+												 </select>
+											  </div>
+											  <div class="col-md-2">
+												 <button type="button" class="btn btn-default" title="Add Tag" onclick="addTag()">
+												 Add</button>
+											  </div>
+											  <div class="col-md-3">
+												 <input type="text" id="newTagTextBox" style="width: 160px;">
+											  </div>
+											  <div class="col-md-2">
+												 <button type="button" class="btn btn-default" title="Add Tag" onclick="$('#taglist').tagsinput('add', $('#newTagTextBox').val());">
+												 Add Tag</button>
+											  </div>
+										   </div>
+										   <input type="text" data-role="tagsinput" class="left" name="taglist" id="taglist" style="display: none;">
+										   <div class="bootstrap-tagsinput"><input type="text" placeholder="" style="width: 3em !important;"></div>
+										</span>
+									 </div>
+									 <div id="nutrition-tab" aria-labelledby="ui-id-6" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+										<div id="nutrition-tab-info"></div>
+									 </div>
+									 <div id="reviews-tab" aria-labelledby="ui-id-7" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+										<div class="row">
+										   <div class="col-md-2">Your rating:</div>
+										   <div class="col-md-10">
+											  <div class="rating-box">
+												 <input type="hidden" name="recipe_shared_rating" id="sharedRating" value="0"> <img src="/images/blankstar.png" alt="1 Star" class="star-rating" rating="1" width="30px" height="30px"> <img src="/images/blankstar.png" alt="2 Stars" class="star-rating" rating="2" width="30px" height="30px"> <img src="/images/blankstar.png" alt="3 Stars" class="star-rating" rating="3" width="30px" height="30px"> <img src="/images/blankstar.png" alt="4 Stars" class="star-rating" rating="4" width="30px" height="30px"> <img src="/images/blankstar.png" alt="5 Stars" class="star-rating" rating="5" width="30px" height="30px">
+											  </div>
+										   </div>
+										</div>
+										<div id="reviewsListDiv"></div>
+										<div id="submitReviewDiv">
+										   <br>
+										   <div class="col-md-12"></div>
+										   <div class="col-md-12">
+											  <input type="hidden" value="" id="sharedRecipeId">
+											  <textarea id="recipeReviewMsg" rows="4" cols="40" class="textarea-width"></textarea>
+										   </div>
+										   <div class="col-md-12">
+											  <input type="button" id="addReview" value="Submit">
+										   </div>
+										</div>
+									 </div>
+								  </div>
+							   </div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+	<footer class="footer fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<p align="center">Copyright &copy; 2017 LunchOn All Rights Reseved - <a href="/site/Privacy_Tos_Eula">Terms of Service</a> - <a href="/site/Privacy_Tos_Eula">Privacy Policy</a> - <a href="/site/contact">Contact us</a></p>
+				</div> 
+			</div> 
+		</div>
+	</footer>
+	
+	<!-- Scripts -->
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/tether/dist/js/tether.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+	
+</body>
+
+</html>

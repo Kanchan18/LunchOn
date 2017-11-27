@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	 <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+	<!-- buid:css css/main.css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+	<link rel="stylesheet" href="css/styles.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.accordion.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.all.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.autocomplete.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.base.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.button.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.core.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.datepicker.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.dialog.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.progressbar.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.resizable.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.selectable.css"> 
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.slider.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.tabs.css">
+	<link rel="stylesheet" href="css/jquery-ui/jquery.ui.theme.css">
+
+    <!-- endbuild -->
+	<title>LunchOn</title>
+</head>
+
+<body>
+	
+<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-toggleable-sm  fixed-top ">
+		<div class="container">
+			
+			<!--<a class="navbar-brand" href="#">Ristorante Con Fusion</a> -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" data-target="#Navbar" > 
+				<span class="navbar-toggler-icon" > </span>
+			</button>
+			<a class="navbar-brand" href="#"><img src="img/HomeCookedMeals.jpg" height="30" width="41"> LUNCHON</a>
+			<div class="collapse navbar-collapse" id="Navbar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link"href="./index.html"><span class="fa fa-home fa-lg"> </span> Home </a></li>
+					<li class="nav-item"><a class="nav-link"href="./Recipe.html"><span class="fa fa-cutlery fa-lg"> </span> Recipe </a></li>
+					<li class="nav-item"><a class="nav-link"href="#"><span class="fa fa-shopping-bag fa-lg"> </span> Groceries </a></li>
+				</ul>
+				<span class="navbar-nav navbar-text pull-right>
+					<span id="login" class="fa fa-sign-out"> <label> Log Out </label> </span> 
+					<span id="backtohome" > <a class="nav-link" href="./Home.html">Back To Home</a></span> 
+				</span>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="jumbotron">
+		<div class ="container-fluid">
+			<h1>Monthly Plan</h1> 
+			<p>My meal plans </p> 
+		</div>
+	</div>
+	
+	<div id="reviewRecipeModal" class="modal fade modal-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	   <div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  <h3 id="myModalLabel">Recipe Info</h3>
+	   </div>
+	   <div class="modal-body">
+		  <div class="col-md-12">
+			 <div class="col-md-4">
+				<img border="0" src="" id="sharedRecipeImage" style="height: 175px; width: 175px;">
+			 </div>
+			 <div class="col-md-8">
+				<div class="row">
+				   <div class="col-md-12">
+					  <h3 id="sharedRecipeTitle"></h3>
+				   </div>
+				</div>
+				<div class="row">
+				   <div class="col-md-3">
+					  <label class="top-5">Serves</label>
+				   </div>
+				   <div class="col-md-9">
+					  <label id="sharedRecipeYield"></label>
+				   </div>
+				</div>
+				<div class="row">
+				   <div class="col-md-3">
+					  <label>Prep Time</label>
+				   </div>
+				   <div class="col-md-9">
+					  <label id="sharedRecipepreptimelabel"></label>
+				   </div>
+				</div>
+				<div class="row">
+				   <div class="col-md-3">
+					  <label>Cook Time</label>
+				   </div>
+				   <div class="col-md-9">
+					  <label id="sharedRecipecooktimelabel"></label>
+				   </div>
+				</div>
+				<div class="row">
+				   <div class="col-md-3">
+					  <label>Oven Temp</label>
+				   </div>
+				   <div class="col-md-9">
+					  <label id="sharedRecipeoventemplabel"></label>
+				   </div>
+				</div>
+			 </div>
+		  </div>
+		  <div class="col-md-12">
+			 <h4>Ingredients:</h4>
+			 <div class="">
+				<div class="col-md-2">
+				   <strong>Quantity</strong>
+				</div>
+				<div class="col-md-2">
+				   <strong>Measure</strong>
+				</div>
+				<div class="col-md-4">
+				   <strong>Ingredients</strong>
+				</div>
+				<div class="col-md-3">
+				   <strong>Variation</strong>
+				</div>
+			 </div>
+			 <div class="col-md-12" id="sharedRecipeIngredients"></div>
+		  </div>
+		  <div class="col-md-12">
+			 <h4>Directions:</h4>
+			 <div class="col-md-12" id="sharedRecipeDirections"></div>
+		  </div>
+		  <div class="col-md-12">
+			 <h4>Notes:</h4>
+			 <div class="col-md-12" id="sharedRecipeNotes"></div>
+		  </div>
+		  <div class="col-md-12">
+			 <h4>Tags:</h4>
+			 <div class="col-md-12" id="sharedRecipeTags"></div>
+		  </div>
+		  <div class="modal-footer">
+			 <button class="btn reviewRecipeButton" data-dismiss="modal" aria-hidden="true" id="rejectSharedRecipe" notificationStatus=false>Reject</button>
+			 <button class="btn btn-default reviewRecipeButton" id="approveSharedRecipe" notificationStatus=true>Approve</button>
+		  </div>
+	   </div>
+	</div>
+	<div id="approveDeclineNotificationRecipeModal" class="modal fade modal-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	   <div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  <h3 id="myModalLabel">Recipe Info</h3>
+	   </div>
+	   <div class="modal-body">
+		  <p id="notificationMessage"></p>
+		  <div class="modal-footer">
+			 <button class="btn" data-dismiss="modal" aria-hidden="true" id="approveDeclineNotificationRecipe">Okay</button>
+		  </div>
+	   </div>
+	</div>
+	<center>
+	   
+	 <div class="container-fluid" style="width: 100%;margin-left: 0;">
+	  <div class="row row-container">
+			
+   <div class="col-md-3 pull-left">
+      
+      <ul class="nav nav-pills nav-stacked" id="appendGroceryListHere"></ul>
+      <div class="clear"></div>
+      <h4 class="text-info">Add New List</h4>
+      <form action="/user/grocerylist/save" class="span2 " method="POST" id="groceryListForm" style="margin-left: 0">
+         <div class="control-group pull-left margin_l_0">
+            <div class="controls">
+               <input type="text" name="listName" id="listName" placeholder="List Name" autocomplete="off" required="required" class="form-control" />
+               <div class="clear"></div>
+               <span id="errorSpan" class="breakword"></span>
+            </div>
+         </div>
+         <div class="control-group pull-left">
+            <div class="controls">
+               <input type="submit" class="btn btn-default" value="Add" id="groceryListSubmitBtn" />
+               <input type="reset" class="btn btn-default" value="Reset" id="groceryListResetBtn" style="display: none;" />
+            </div>
+         </div>
+      </form>
+      <div class="clear"></div>
+      <h4 class="text-info pull-left">Add New Category</h4>
+      <form action="/user/grocerylist/addcategory" class="span2 " method="POST" id="addcategoryForm" style="margin-left: 0">
+         <div class="control-group pull-left margin_l_0">
+            <div class="controls">
+               <input type="text" name="CatgeoryName" id="CategoryName" placeholder="Category Name" autocomplete="off" required="required" class="form-control" />
+               <div class="clear"></div>
+               <span id="errorSpan" class="breakword"></span>
+            </div>
+         </div>
+         <div class="control-group pull-left">
+            <div class="controls">
+               <input type="submit" class="btn btn-default" value="Add" id="addcategorySubmitBtn" />
+               <input type="reset" class="btn btn-default" value="Reset" id="addcategoryResetBtn" style="display: none;" />
+            </div>
+         </div>
+      </form>
+      <div class="clear"></div>
+   </div>
+   <div class="col-md-8">
+      <h4 class="text-info">Add New Items to List</h4>
+      <input id="hiddenListId" type="hidden" name="hiddenListId" value="">
+      <button class="btn btn-default" onClick="$('#addGroceryModal').modal('show')">Add new Grocery Item's</button>
+      <button class="btn btn-default groceryAccordion-expand-all">Expand all Categories</button>
+
+	  <div class="clear"></div>
+      <div id="appendGroceryListItemsHere"></div>
+      <br />
+      <h4 class="text-info">Cross Off Items</h4>
+      <table class="table table-hover table-striped table-bordered">
+         <thead>
+            <tr>
+               <th>Item Name</th>
+               <th>Amount</th>
+	           <th>Source</th>
+            </tr>
+         </thead>
+         <tbody id="appendcrossoffItemsHere"></tbody>
+      </table>
+      <div style="float: right;">
+         <button class="btn btn-default" id="clearcrossoff">Clear Crossed Off Items</button>
+      </div>
+   </div>
+	</div>
+</div>
+<footer class="footer fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<p align="center">Copyright &copy; 2017 LunchOn All Rights Reseved - <a href="/site/Privacy_Tos_Eula">Terms of Service</a> - <a href="/site/Privacy_Tos_Eula">Privacy Policy</a> - <a href="/site/contact">Contact us</a></p>
+				</div> 
+			</div> 
+		</div>
+	</footer>
+
+		
+	<!-- Scripts -->
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/tether/dist/js/tether.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+	
+</body>
+
+</html>
